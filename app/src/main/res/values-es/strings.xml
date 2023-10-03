@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="question">Pregunta</string>
-    <string name="true_button">Cierto</string>
-    <string name="false_button">Falso</string>
+    <string name="app_name">Aplicación de Prueba</string>
+    <string name="main_true">Verdadero</string>
+    <string name="main_false">Falso</string>
+    <string name="main_score">Puntaje: %1$d</string>
+    <string name="main_question">Pregunta</string>
+    <string name="main_finalScore">Vista de Texto</string>
+    <string name="main_restart">Reanudar</string>
+    <string name="main_shuffle">Barajar</string>
+    <string name="main_quizCompleted">Prueba Completada Puntuación Final: %1$d / 10</string>
 </resources>

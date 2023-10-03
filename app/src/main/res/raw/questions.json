@@ -1,16 +1,42 @@
-{
-  "questions" : [
-    {
-      "question": "Why?",
-      "option1": "Huh?",
-      "option2": "Because.",
-      "answer": "Because."
-    },
-    {
-      "question": "Who?",
-      "option1": "Huh?",
-      "option2": "Them.",
-      "answer": "Them."
-    }
-  ]
-}
+[
+  {
+    "question": "yes?",
+    "answer": false
+  },
+  {
+    "question": "yes?",
+    "answer": false
+  },
+  {
+    "question": "yes?",
+    "answer": false
+  },
+  {
+    "question": "yes?",
+    "answer": false
+  },
+  {
+    "question": "yes?",
+    "answer": false
+  },
+  {
+    "question": "yes?",
+    "answer": false
+  },
+  {
+    "question": "yes?",
+    "answer": false
+  },
+  {
+    "question": "yes?",
+    "answer": false
+  },
+  {
+    "question": "yes?",
+    "answer": false
+  },
+  {
+    "question": "yes?",
+    "answer": false
+  }
+]

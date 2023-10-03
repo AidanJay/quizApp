@@ -7,40 +7,100 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView_main_question"
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_main_finishedQuiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="@string/question"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_main_trueButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.525" />
+        app:constraint_referenced_ids="textView_main_finalScore,button_main_restart,button_main_shuffle" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_main_falseButton"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:background="@drawable/rectangular_button"
-        android:text="B"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_main_trueButton" />
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_main_unfinishedQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="button_main_trueButton,button_main_falseButton,textView_main_question,textView_main_score" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_main_trueButton"
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:background="@drawable/rectangular_button"
-        android:text="A"
+        android:text="@string/main_true"
+        app:layout_constraintBottom_toTopOf="@+id/button_main_falseButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_main_score"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_main_falseButton"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="160dp"
+        android:background="@drawable/rectangular_button"
+        android:text="@string/main_false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_main_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/main_question"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView_main_score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/textView_main_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_score"
+        app:layout_constraintBottom_toTopOf="@+id/button_main_trueButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_main_question" />
+
+    <TextView
+        android:id="@+id/textView_main_finalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_finalScore"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.36" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_main_restart"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:background="@drawable/rectangular_button"
+        android:text="@string/main_restart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_main_shuffle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_main_finalScore" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_main_shuffle"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:background="@drawable/rectangular_button"
+        android:text="@string/main_shuffle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_main_restart"
+        app:layout_constraintTop_toBottomOf="@+id/textView_main_finalScore" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

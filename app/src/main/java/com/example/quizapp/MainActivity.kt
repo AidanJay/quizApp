@@ -1,11 +1,13 @@
 package com.example.quizapp
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.Group
+import androidx.core.view.isVisible
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -16,11 +18,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var quiz: Quiz
-
-    lateinit var buttonTrue: Button
-    lateinit var buttonFalse: Button
-    lateinit var currentQuestion: TextView
-    lateinit var layoutMain: ConstraintLayout
+    private lateinit var buttonTrue: Button
+    private lateinit var buttonFalse: Button
+    private lateinit var buttonRestart: Button
+    private lateinit var buttonShuffle: Button
+    private lateinit var currentQuestion: TextView
+    private lateinit var currentScore: TextView
+    private lateinit var finalScore: TextView
+    private lateinit var groupFinished: Group
+    private lateinit var groupUnfinished: Group
+    private lateinit var scoreText: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,25 +45,59 @@ class MainActivity : AppCompatActivity() {
         // set listeners to react to user input
         // passing info to and from the Quiz object
 
+        scoreText = getString(R.string.main_score)
         // get the first question, set up the textviews
-        buttonTrue.text = resources.getString(R.string.true_button)
-        buttonFalse.text = resources.getString(R.string.false_button)
-        currentQuestion.text = quiz.question
+        displayQuestion()
+        groupUnfinished.isVisible = true
+        groupFinished.isVisible = false
+        currentQuestion.setTextSize(25f)
 
         // set up the onclicklisteners for the buttons
-//        buttonAnswer1.setOnClickListener {
-//            if (buttonAnswer1.text.equals(answer)
-//        }
-//        buttonAnswer2.setOnClickListener {
-//            if (buttonAnswer2.text.equals(answer))
-//        }
-//        buttonAnswer3.setOnClickListener {
-//            if (buttonAnswer3.text.equals(answer))
-//        }
-//        buttonAnswer4.setOnClickListener {
-//            if (buttonAnswer4.text.equals(answer))
-//        }
+        buttonTrue.setOnClickListener {
+            quiz.checkQuestion(true)
+            if (quiz.nextQuestion()) {
+                displayQuestion()
+            } else {
+                quizCompleted()
+            }
+        }
+        buttonFalse.setOnClickListener {
+            quiz.checkQuestion(false)
+            if (quiz.nextQuestion()) {
+                displayQuestion()
+            } else {
+                quizCompleted()
+            }
+        }
+        buttonRestart.setOnClickListener {
+            quiz.reset()
+            quizUncompleted()
+        }
+        buttonShuffle.setOnClickListener {
+            quiz.shuffle()
+            quizUncompleted()
+        }
+    }
 
+    @SuppressLint("StringFormatInvalid")
+    private fun quizCompleted() {
+        groupUnfinished.isVisible = false
+        groupFinished.isVisible = true
+        finalScore.setTextSize(40F)
+        val displayScore = getString(R.string.main_quizCompleted, quiz.score)
+        finalScore.text = displayScore
+    }
+
+    private fun quizUncompleted() {
+        groupUnfinished.isVisible = true
+        groupFinished.isVisible = false
+        displayQuestion()
+    }
+
+    @SuppressLint("StringFormatInvalid")
+    private fun displayQuestion() {
+        currentQuestion.text = quiz.currQues.question
+        currentScore.text = getString(R.string.main_score, quiz.score)
     }
 
     private fun loadQuestions() {
@@ -99,7 +140,12 @@ class MainActivity : AppCompatActivity() {
         buttonTrue = findViewById(R.id.button_main_trueButton)
         buttonFalse = findViewById(R.id.button_main_falseButton)
         currentQuestion = findViewById(R.id.textView_main_question)
-        layoutMain = findViewById(R.id.layout_main)
+        currentScore = findViewById(R.id.textView_main_score)
+        finalScore = findViewById(R.id.textView_main_finalScore)
+        groupUnfinished = findViewById(R.id.group_main_unfinishedQuiz)
+        groupFinished = findViewById(R.id.group_main_finishedQuiz)
+        buttonRestart = findViewById(R.id.button_main_restart)
+        buttonShuffle = findViewById(R.id.button_main_shuffle)
     }
 
 }
